@@ -11,22 +11,63 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-int ft_print_hex(long n,int base)
+stactic void clear(void *p)
 {
-    int count;
-    char *sym;
+    char *a = (char *)p;
+    while(*a)
+        free(a++);
+    free(a);
+}
+static int len(int nb)
+{
+    int i;
 
-    sym = "0123456789abcdef";
-    if(n < 0)
+    i = 0;
+    while(nb != 0)
     {
-        write(1,"-",1);
-        return ft_print_hex(-n,base) + 1;
+        nb = nb /10;
+        i++;
     }
-    else if(n < base)
-        return ft_print_chr(sym[n]);
-    else
+    return (i)
+}
+static int insert(unsigned long nb , char *nbr , int base)
+{
+    int n ;
+    int i ;
+
+    i = 0;
+    n = 0;
+    while(nb > 0)
     {
-        count += ft_print_hex( n / base, base);
+        n = nb % 16;
+        nb = nb / 16;
+        nbr[i] =  base[n];
+        i++; 
     }
-    return count += ft_print_hex(n % base,base);
+    return (i);
+}
+
+
+
+int ft_print_hex(unsigned long n)
+{
+  int indexing;
+  char *base;
+  int res;
+  int len;
+  char *nbr;
+
+
+    base = ft_strdup("012345678abcdef\0");
+    if(n == 0)
+        res += write(1,"0",1);
+    len = len(n);
+    nbr =(char *)malloc(len);
+    indexing = insert(n,nbr,base);
+    while(indexing)
+    {
+        res+=write(1,&nbr[i],1);
+    }
+    clear(nbr);
+    return (res);
 }
