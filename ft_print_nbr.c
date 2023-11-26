@@ -1,65 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_upper_hex.c                               :+:      :+:    :+:   */
+/*   ft_print_nbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchihab <mchihab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 16:30:13 by mchihab           #+#    #+#             */
-/*   Updated: 2023/11/26 17:52:26 by mchihab          ###   ########.fr       */
+/*   Updated: 2023/11/26 21:10:27 by mchihab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
 
-static int count_digits(int n) 
+#include "ft_printf.h"
+
+static int	length_int(long int c)
 {
-    int count = 0;
-    do {
-        count++;
-        n /= 10;
-    } while (n != 0);
-    return count;
+	int	i;
+
+	i = 1;
+	if (c < 0)
+	{
+		i = i + 1;
+		c = -c;
+	}
+	while (c / 10)
+	{
+		i++;
+		c = c / 10;
+	}
+	return (i);
 }
 
-static int handle_negative(int *n, int *j)
+int	ft_putnbr(int nb)
 {
-    if (*n < 0) {
-        write(1, "-", 1);
-        (*j)++;
-        if (*n == -2147483648) {
-            write(1, "2147483648", 10);
-            return 11;
-        }
-        *n = -*n;
-    }
-    return 0;
-}
+	long	nbr;
 
-static void print_digit(int n) 
-{
-    char c = n + '0';
-    write(1, &c, 1);
-}
-
-int ft_putnbr(int n) 
-{
-    int j ;
-
-    j = 0;
-    if (n == 0) 
-    {
-        print_digit(0);
-        return 1;
-    }
-    j += count_digits(n);
-    if (handle_negative(&n, &j))
-        return handle_negative(&n, &j);
-    while (n >= 10) {
-        print_digit(n % 10);
-        n /= 10;
-    }
-    print_digit(n);
-    return j;
+	nbr = (long)nb;
+	if (nb == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+	}
+	else if (nb > 9)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	else if (nb < 0)
+	{
+		write(1, "-", 1);
+		nb = -nb;
+		ft_putnbr(nb);
+	}
+	else
+	{
+		ft_print_chr(nb + '0');
+	}
+	return (length_int(nbr));
 }

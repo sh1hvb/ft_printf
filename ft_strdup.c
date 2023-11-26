@@ -1,17 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_upper_hex.c                               :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchihab <mchihab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:24:13 by mchihab           #+#    #+#             */
-/*   Updated: 2023/11/26 17:52:26 by mchihab          ###   ########.fr       */
+/*   Updated: 2023/11/26 20:01:40 by mchihab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "ft_printf.h"
+int ft_strlen(const char *s){
+	int i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 char	*ft_strdup(const char *s1)
 {
@@ -19,7 +27,7 @@ char	*ft_strdup(const char *s1)
 	char	*str;
 
 	i = 0;
-	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + 1);
+	str = (char *)malloc(ft_strlen(s1) + 1);
 	if (!str)
 		return (NULL);
 	while (s1[i] != '\0')
