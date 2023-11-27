@@ -6,7 +6,7 @@
 /*   By: mchihab <mchihab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:10:03 by mchihab           #+#    #+#             */
-/*   Updated: 2023/11/27 16:40:54 by mchihab          ###   ########.fr       */
+/*   Updated: 2023/11/27 18:50:01 by mchihab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int ft_print_hex(unsigned long n)
     int len;
     char *nbr;
 
-    base = ft_strdup("0123456789abcdef");
+    base = "0123456789abcdef";
     if (base == NULL)
         return (0);  
     if (n == 0)
@@ -66,6 +66,5 @@ int ft_print_hex(unsigned long n)
     while (indexing--)
         res += write(1, &nbr[indexing], 1);
     free(nbr);
-    free(base);
     return res;
 }

@@ -6,7 +6,7 @@
 /*   By: mchihab <mchihab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:24:13 by mchihab           #+#    #+#             */
-/*   Updated: 2023/11/27 16:41:06 by mchihab          ###   ########.fr       */
+/*   Updated: 2023/11/27 20:53:15 by mchihab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,16 @@ int ft_print_upper_hex(unsigned long n)
     int len;
     char *nbr;
 
-    base = ft_strdup("0123456789ABCDEF");
+
+    base ="0123456789ABCDEF";
     if (base == NULL)
         return (0);  
     if (n == 0)
         res += write(1, "0", 1);
     len = lenn(n);
     nbr = malloc(len + 1);  
-    if (nbr == NULL)
-    {   
-        free(base);
+    if (nbr == NULL)  
         return (0);  
-    }
     indexing = insert(n, nbr, base);
     while (indexing--)
         res += write(1, &nbr[indexing], 1);
