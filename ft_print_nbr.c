@@ -6,7 +6,7 @@
 /*   By: mchihab <mchihab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 16:30:13 by mchihab           #+#    #+#             */
-/*   Updated: 2023/11/26 21:10:27 by mchihab          ###   ########.fr       */
+/*   Updated: 2023/11/27 12:31:02 by mchihab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,6 @@
 
 #include "ft_printf.h"
 
-static int	length_int(long int c)
-{
-	int	i;
-
-	i = 1;
-	if (c < 0)
-	{
-		i = i + 1;
-		c = -c;
-	}
-	while (c / 10)
-	{
-		i++;
-		c = c / 10;
-	}
-	return (i);
-}
 
 int	ft_putnbr(int nb)
 {

@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   ft_length_int.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchihab <mchihab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 16:15:16 by mchihab           #+#    #+#             */
-/*   Updated: 2023/11/27 13:17:03 by mchihab          ###   ########.fr       */
+/*   Created: 2023/11/27 12:34:04 by mchihab           #+#    #+#             */
+/*   Updated: 2023/11/27 12:34:06 by mchihab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-int ft_print_string(char *str)
+int	length_int(long int c)
 {
-    if(str == NULL)
-    {
-        write(1,"(null)",6);
-        return(6);
-    }
-    int count;
-    int i;
+	int	i;
 
-    i = 0; 
-    count = 0;
-    while (str[i])
-    {
-        ft_print_chr(str[i]);
-        i++;
-        count++;
-    }
-    return (count);  
+	i = 1;
+	if (c < 0)
+	{
+		i = i + 1;
+		c = -c;
+	}
+	while (c / 10)
+	{
+		i++;
+		c = c / 10;
+	}
+	return (i);
 }

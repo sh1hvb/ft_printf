@@ -4,6 +4,11 @@
 #include <limits.h>
 int main()
 {
-  char a[]="habibib";
-  ft_printf("\n\n\n%p\n\n\n", a);
+  char a[] ="habibi";
+
+printf("%d", ft_printf("\n%X\n%x\n%d\n%s\n%p\n",NULL));
+    printf("\n");
+    system("leaks a.out");
+    printf("%d", ft_printf("\n%X\n%x\n%d\n%s\n%p\n",NULL));
+    
 }

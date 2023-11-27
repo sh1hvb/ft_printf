@@ -6,7 +6,7 @@
 /*   By: mchihab <mchihab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:01:37 by mchihab           #+#    #+#             */
-/*   Updated: 2023/11/26 20:33:30 by mchihab          ###   ########.fr       */
+/*   Updated: 2023/11/27 16:34:56 by mchihab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static int ft_printf_format(char spex, va_list ap)
     else if (spex == 'p')
     {
         count += write(1, "0x", 2);
-        count += ft_print_hex((uintptr_t)va_arg(ap, void *));
+        count += ft_print_hex((unsigned long)va_arg(ap, void *));
     }
     else if (spex == 'd' || spex == 'i')
         count += ft_putnbr(va_arg(ap, int));
     else if (spex == 'u')
-        count += ft_putnbr(va_arg(ap, unsigned int));
+        count += ft_putnbr_unsigned(va_arg(ap, unsigned int));
     else if (spex == 'x')
         count += ft_print_hex(va_arg(ap, unsigned int));
     else if (spex == 'X')
@@ -59,7 +59,6 @@ int ft_printf(const char *f, ...)
 
         ++f;
     }
-
     va_end(ap);
     return count;
 }
